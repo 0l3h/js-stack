@@ -54,25 +54,23 @@ class Stack {
  * @returns {Boolean} Result of the check.
  */
 function isPalindrome(value) {
-    const stack = new Stack(10);
+    const stack = new Stack(100);
     const text = [...value.toLowerCase()]
     .filter(element => {
         return element !== ' ';
     }); 
 
-    for(let i = 0; i < text.length / 2; i++) {
-        stack.push(i);
-        
-        if(text[i] === text[text.length - 1 - i]) {
+    for(let i = 0; i < text.length; i++) {
+        stack.push(text[i]);
+    }
+
+    for(let i = 0; i < text.length; i++) {
+        if(text[i] === stack.peek) {
             stack.pop();
         }
     }
 
-    if(stack.isEmpty) {
-        return true;
-    }
-    
-    return false;
+    return stack.isEmpty; 
 }
 
 const str = 'а роза упала на лапу Азора';
